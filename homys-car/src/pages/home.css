@@ -1,0 +1,14 @@
+.my-col {
+  min-height: 600px;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.mapContainer {
+  background-image: url("../images/fake-map.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
