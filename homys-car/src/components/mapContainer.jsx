@@ -18,7 +18,7 @@ class MapContainer extends Component {
         <Marker
           position={{ lat: -37.8, lng: 144.96332 }}
           /////
-          onClick={this.onMarkerClick}
+          onClick={this.props.onShowDetail}
           /////
           name={"Example marker for car 1"}
         />
