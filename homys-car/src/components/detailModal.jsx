@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 class DetailModal extends Component {
   state = {};
@@ -13,6 +12,9 @@ class DetailModal extends Component {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
+          <Modal.Header closeButton>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
           <Modal.Body closeButton>
             <h4>Centered Modal</h4>
             <p>
@@ -22,9 +24,9 @@ class DetailModal extends Component {
             </p>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.onHide} className="btn-dark">
+            <div className="btn btn-dark" onClick={this.props.onHide}>
               Close
-            </Button>
+            </div>
 
             <Link className="btn btn-primary" to="/testRoute">
               {" "}
