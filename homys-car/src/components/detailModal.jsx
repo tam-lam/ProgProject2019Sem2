@@ -24,9 +24,9 @@ class DetailModal extends Component {
               ac consectetur aac, vestibulum at eros.asdfadfa
             </p>
           </Modal.Body>
-          <Modal.Footer className="bg-success modal-footer">
+          <Modal.Footer className="bg-success modal-footer shadow-lg">
             <Link
-              className="btn btn-block rent-btn bg-success text-light"
+              className="btn btn-block rent-btn bg-success text-light shadow-lg"
               to="/rent"
             >
               Rent Now
