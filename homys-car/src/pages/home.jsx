@@ -5,9 +5,14 @@ import Jumbotron from "../components/jumbotron";
 import MapContainer from "../components/mapContainer";
 import "./home.css";
 import CarList from "../components/carList";
+import DetailModal from "../components/detailModal";
 class Home extends Component {
-  state = {};
+  state = {
+    modalShow: false
+  };
   render() {
+    let modalClose = () => this.setState({ modalShow: false });
+
     return (
       <React.Fragment>
         <NavBar />
@@ -15,7 +20,13 @@ class Home extends Component {
           title="Rent now"
           subtitle='Homy&apos;s car is one of the easiest and fastest car rental service in the world. Simply click on "Get my location"  and select a vehicle near by and start renting '
         />
-        <div className="btn btn-primary">Test Modal</div>
+        <div
+          className="btn btn-primary"
+          onClick={() => this.setState({ modalShow: true })}
+        >
+          Test Modal
+        </div>
+        <DetailModal show={this.state.modalShow} onHide={modalClose} />
         <div className="container-fluid bg-dark">
           <div className="row">
             <div className="col-lg-7 nopadding my-col order-lg-2 mapContainer">

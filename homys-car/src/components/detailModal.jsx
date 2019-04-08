@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Modal } from "react-bootstrap/Modal";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 class DetailModal extends Component {
   state = {};
   render() {
@@ -23,12 +25,7 @@ class DetailModal extends Component {
             <Button onClick={this.props.onHide} className="btn-dark">
               Close
             </Button>
-            <Button
-              onClick={() => this.props.history.push("/testRoute")}
-              className="btn-dark"
-            >
-              Rent Now
-            </Button>
+
             <Link className="btn btn-primary" to="/testRoute">
               {" "}
               testRoute
