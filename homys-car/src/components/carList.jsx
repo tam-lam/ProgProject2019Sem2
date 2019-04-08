@@ -6,8 +6,8 @@ class CarList extends Component {
     return (
       <React.Fragment>
         <ul class="list-group  my-list-group bg-dark list-group-flush ">
-          <CarItem />
-          <CarItem />
+          <CarItem onShowDetail={this.props.onShowDetail} />
+          <CarItem onShowDetail={this.props.onShowDetail} />
         </ul>
       </React.Fragment>
     );

@@ -13,6 +13,7 @@ class CarItem extends Component {
           <button
             type="button"
             className="btn btn-outline-light shadow-lg float-right"
+            onClick={this.props.onShowDetail}
           >
             Detail
           </button>

@@ -15,6 +15,7 @@ class Home extends Component {
   render() {
     /////
     let modalClose = () => this.setState({ modalShow: false });
+    let modalShow = () => this.setState({ modalShow: true });
     /////
 
     return (
@@ -25,10 +26,7 @@ class Home extends Component {
           subtitle='Homy&apos;s car is one of the easiest and fastest car rental service in the world. Simply click on "Get my location"  and select a vehicle near by and start renting '
         />
         {/* /////// */}
-        <div
-          className="btn btn-primary"
-          onClick={() => this.setState({ modalShow: true })}
-        >
+        <div className="btn btn-primary" onClick={modalShow}>
           Test Modal
         </div>
         <DetailModal show={this.state.modalShow} onHide={modalClose} />
@@ -40,7 +38,7 @@ class Home extends Component {
             </div>
             <div className="col-lg-5 order-lg-1 nopadding my-col">
               <div className="container-fluid shadow-lg bg-dark ">
-                <CarList />
+                <CarList onShowDetail={modalShow} />
               </div>
             </div>
           </div>
