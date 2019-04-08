@@ -17,12 +17,16 @@ class MapContainer extends Component {
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         <Marker
           position={{ lat: -37.8, lng: 144.96332 }}
+          /////
           onClick={this.onMarkerClick}
+          /////
           name={"Example marker for car 1"}
         />
         <Marker
           position={{ lat: -37.814, lng: 144.9 }}
-          onClick={this.onMarkerClick}
+          /////
+          onClick={this.props.onShowDetail}
+          //////
           name={"Example marker for car 2"}
         />
         <Marker onClick={this.onMarkerClick} name={"current location"} />
@@ -39,12 +43,15 @@ class MapContainer extends Component {
     );
   }
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
+    // this.props.onShowDetail;
+
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
+  };
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
