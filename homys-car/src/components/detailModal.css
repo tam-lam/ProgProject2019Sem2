@@ -11,6 +11,10 @@
   border: none !important;
 }
 .modal-title {
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
+}
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
 }
