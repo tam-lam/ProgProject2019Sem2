@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import "./detailModal.css";
+import icon from "../images/icon-black.png";
+
 class DetailModal extends Component {
   state = {};
   render() {
@@ -19,8 +21,15 @@ class DetailModal extends Component {
           <Modal.Body closeButton>
             <div className="container-fuild">
               <div className="row">
-                <div className="col-lg-7 detailContainer">
-                  <h1>detail</h1>
+                <div className="col-lg-7 detailContainer text-center ">
+                  <img src={icon} className=" car-img shadow rounded-circle " />
+                  <h4>ModalString MakeString Year</h4>
+                  <p>
+                    No Streeet Address Suburd VIC 0000
+                    <br />
+                    Rego: ABCD123
+                    <br /> 1km away, price$/day
+                  </p>
                 </div>
                 <div className="container-fuild col-lg-5  formContainer">
                   <form>
