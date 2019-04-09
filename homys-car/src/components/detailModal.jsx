@@ -17,12 +17,39 @@ class DetailModal extends Component {
             <Modal.Title className="modal-title">Details</Modal.Title>
           </Modal.Header>
           <Modal.Body closeButton>
-            <h4>Centered Modal</h4>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur aac, vestibulum at eros.asdfadfa
-            </p>
+            <div className="container-fuild col-md-6">
+              <form>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label for="bookingDate">Booking date</label>
+                    <input
+                      type="date"
+                      className="form-control"
+                      id="bookingDate"
+                      placeholder="dd/mm/yyyy"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label for="returnDate">Return date</label>
+                    <input
+                      type="date"
+                      className="form-control"
+                      id="returnDate"
+                      placeholder="dd/mm/yyyy"
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label for="returnLocation">Return location</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="returnLocation"
+                    placeholder="Enter a return address"
+                  />
+                </div>
+              </form>
+            </div>
           </Modal.Body>
           <Modal.Footer className="bg-success modal-footer shadow-lg">
             <Link
