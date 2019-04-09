@@ -14,7 +14,6 @@
   font-size: 35px;
   font-weight: bold;
 }
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
+.formContainer {
+  border-left: 1px dotted lightgray;
 }

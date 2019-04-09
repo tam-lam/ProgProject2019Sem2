@@ -19,10 +19,10 @@ class DetailModal extends Component {
           <Modal.Body closeButton>
             <div className="container-fuild">
               <div className="row">
-                <div className="col-lg-6 bg-dark">
+                <div className="col-lg-7 detailContainer">
                   <h1>detail</h1>
                 </div>
-                <div className="container-fuild col-lg-6">
+                <div className="container-fuild col-lg-5  formContainer">
                   <form>
                     <div className="form-row">
                       <div className="form-group">
