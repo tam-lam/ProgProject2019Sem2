@@ -31,11 +31,11 @@ class DetailModal extends Component {
                     <br /> 1km away, price$/day
                   </p>
                 </div>
-                <div className="container-fuild col-lg-5  formContainer">
+                <div className="container-fuild col-lg-5 formContainer">
                   <form>
                     <div className="form-row">
                       <div className="form-group">
-                        <label for="bookingDate">Booking date</label>
+                        <label for="bookingDate">Renting date</label>
                         <input
                           type="date"
                           className="form-control"
