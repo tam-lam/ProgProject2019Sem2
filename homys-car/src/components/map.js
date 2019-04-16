@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from 'axios';
 
 const mapStyles = {
   map: {
@@ -54,20 +55,33 @@ export class CurrentLocation extends React.Component {
     }
   }
   componentDidMount() {
+
+
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
           const coords = pos.coords;
+          //send location values to back end server
+          axios.post("http://localhost:3001/setlocation" , {
+            lat: coords.latitude,
+            lng: coords.longitude
+          });
+
           this.setState({
             currentLocation: {
               lat: coords.latitude,
               lng: coords.longitude
             }
           });
+          
+          // send current location to server
+          
+
         });
       }
     }
     this.loadMap();
+
   }
   loadMap() {
     if (this.props && this.props.google) {

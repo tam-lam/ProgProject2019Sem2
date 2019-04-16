@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./map";
+
 const mapStyles = {
   width: "100%",
   height: "100%"
@@ -9,26 +11,45 @@ class MapContainer extends Component {
   state = {
     showingInfoWindow: true,
     activeMarker: {},
-    selectedPlace: {}
+    selectedPlace: {},
+    cars: []
   };
 
+  componentWillMount() {
+    axios.get("http://localhost:3001/getcarswithdistance").then(res => {
+      var tempArray = [];
+      for (var i = 0; i < res.data.length; i++) {
+        tempArray.push(res.data[i]);
+      }
+
+      this.setState(state => {
+        return { cars: tempArray };
+      });
+    });
+  }
+
   render() {
+    var markers = [];
+    // console.log("car" + this.state.cars);
+    for (var i = 0; i < this.state.cars.length; i++) {
+      const car = this.state.cars[i].car;
+      const distance = this.state.cars[i].distance.text;
+      markers.push(
+        // console.log("car value" + this.state.cars[i].car.lat),
+
+        <Marker
+          position={{
+            lat: this.state.cars[i].car.lat,
+            lng: this.state.cars[i].car.lng
+          }}
+          onClick={() => this.props.onShowDetail(car, distance)}
+        />
+      );
+    }
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
-        <Marker
-          position={{ lat: -37.8, lng: 144.96332 }}
-          /////
-          onClick={this.props.onShowDetail}
-          /////
-          name={"Example marker for car 1"}
-        />
-        <Marker
-          position={{ lat: -37.814, lng: 144.9 }}
-          /////
-          onClick={this.props.onShowDetail}
-          //////
-          name={"Example marker for car 2"}
-        />
+        {markers}
+
         <Marker onClick={this.onMarkerClick} name={"current location"} />
         <InfoWindow
           marker={this.state.activeMarker}
@@ -43,15 +64,12 @@ class MapContainer extends Component {
     );
   }
 
-  onMarkerClick = (props, marker, e) => {
-    // this.props.onShowDetail;
-
+  onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
-  };
 
   onClose = props => {
     if (this.state.showingInfoWindow) {

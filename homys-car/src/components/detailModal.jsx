@@ -2,16 +2,25 @@ import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import "./detailModal.css";
-import icon from "../images/icon-black.png";
 
 class DetailModal extends Component {
   state = {};
+  showDetail = (label, detail, width, isImportant) => {
+    var className = "col-sm-" + width + " detail-col text-capitalize";
+    if (isImportant) className += " text-success  font-weight-bold";
+    return (
+      <div className={className}>
+        <h4>{label}</h4>
+        {detail}
+      </div>
+    );
+  };
   render() {
+    var carImgURL = "/images/" + this.props.rego + ".jpg";
     return (
       <React.Fragment>
         <Modal
           {...this.props}
-          size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
@@ -19,51 +28,33 @@ class DetailModal extends Component {
             <Modal.Title className="modal-title">Details</Modal.Title>
           </Modal.Header>
           <Modal.Body closeButton>
-            <div className="container-fuild">
-              <div className="row">
-                <div className="col-lg-7 detailContainer text-center ">
-                  <img src={icon} className=" car-img shadow rounded-circle " />
-                  <h4>ModalString MakeString Year</h4>
-                  <p>
-                    No Streeet Address Suburd VIC 0000
-                    <br />
-                    Rego: ABCD123
-                    <br /> 1km away, price$/day
-                  </p>
-                </div>
-                <div className="container-fuild col-lg-5 formContainer">
-                  <form>
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label for="bookingDate">Renting date</label>
-                        <input
-                          type="date"
-                          className="form-control"
-                          id="bookingDate"
-                          placeholder="dd/mm/yyyy"
-                        />
-                      </div>
-                      &nbsp;&nbsp;
-                      <div className="form-group">
-                        <label for="returnDate">Return date</label>
-                        <input
-                          type="date"
-                          className="form-control"
-                          id="returnDate"
-                          placeholder="dd/mm/yyyy"
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <label for="returnLocation">Return location</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="returnLocation"
-                        placeholder="Enter a return address"
-                      />
-                    </div>
-                  </form>
+            <div className="container ">
+              <div className=" detailContainer text-center ">
+                <img
+                  src={carImgURL}
+                  className=" car-img bg-dark shadow rounded-circle "
+                />
+                <h3 className="font-weight-bold text-capitalize">
+                  {this.props.make} {this.props.model} {this.props.year}
+                </h3>
+                <p>
+                  {this.props.address}
+                  <br /> {this.props.distance} away
+                </p>
+                <div className="more-details-container text-left ">
+                  <div className="row detail-row">
+                    {this.showDetail("Body Type", this.props.body, 7)}
+                    {this.showDetail("Tranmission", this.props.transmission, 5)}
+                  </div>
+                  <div className="row detail-row ">
+                    {this.showDetail("Rego No:", this.props.rego, 7)}
+                    {this.showDetail(
+                      "Pricing",
+                      this.props.price + "$/h",
+                      5,
+                      true
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -71,7 +62,21 @@ class DetailModal extends Component {
           <Modal.Footer className="bg-success modal-footer shadow-lg">
             <Link
               className="btn btn-block rent-btn bg-success text-light shadow-lg"
-              to="/rent"
+              to={{
+                pathname: "/rent",
+                state: {
+                  make: this.props.make,
+                  model: this.props.model,
+                  year: this.props.year,
+                  rego: this.props.rego,
+                  body: this.props.body,
+                  transmission: this.props.transmission,
+                  address: this.props.address,
+                  price: this.props.price,
+                  distance: this.props.distance,
+                  carImgURL: carImgURL
+                }
+              }}
             >
               Rent now
             </Link>
@@ -81,5 +86,4 @@ class DetailModal extends Component {
     );
   }
 }
-
 export default DetailModal;

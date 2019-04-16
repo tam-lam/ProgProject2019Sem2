@@ -1,32 +1,35 @@
 import {
   addNewCar,
-  // getContacts, 
-  // getContactWithID, 
-  // updateContact,
-  // deleteContact,
-} from "../controllers/crmController";
+  getCars,
+} from "../controllers/carController";
+
+import { 
+  addNewRental,
+  getRentals 
+} from "../controllers/rentalController"
+
+
+
+import { setUserLocation , getCarsWithDistance } from "../controllers/mapController";
+
 
 const routes = (app) => {
-  app.route('/contact')
-    // .get(( req , res, next ) => {
-    //   //middleware
-    //   console.log(`Request from ${req.originalUrl}`)
-    //   console.log(`Request type ${req.method}`)
-    //   next();
-    // }, getContacts)
+  app.route('/car')
+    .post(addNewCar)
+    .get(getCars);
 
-    // POST endpoint
-    .post(addNewCar);
+  app.route('/setlocation')
+  .post(setUserLocation); 
+    
 
-  // app.route('/contact/:contactId')
-  // // get specific contact
-  // .get(getContactWithID)
+  app.route('/getcarswithdistance')
+  .get(getCarsWithDistance)
+    
+    
+  app.route('/rental')
+    .post(addNewRental)
+    .get(getRentals)
 
-  // // put request
-  // .put(updateContact)
-
-  // // delete request
-  // .delete(deleteContact);
 }
 
 export default routes;
