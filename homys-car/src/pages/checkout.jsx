@@ -12,6 +12,7 @@ class Checkout extends Component {
   signinOnClick = () => {
     this.setState({ isUserSignedIn: true });
   };
+  //Display title depends on whether user is signed in , a car is selected
   displayTitle = () => {
     var subtitle =
       this.state.car == null

@@ -12,7 +12,6 @@ class CarItem extends Component {
       body: this.props.car.body,
       price: this.props.car.price,
       address: this.props.car.address,
-
       lat: props.lat,
       lng: props.lng,
       distance: this.props.distance.text
