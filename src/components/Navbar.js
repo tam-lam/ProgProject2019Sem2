@@ -37,8 +37,8 @@ class NavBar extends Component {
               <h2 className="d-none d-lg-block my-h2">
                 &nbsp;&nbsp;/&nbsp;&nbsp;
               </h2>
-              <Link className="nav-item nav-link" to="/about">
-                ABOUT
+              <Link className="nav-item nav-link" to="/return">
+                RETURN
               </Link>
               <h2 className="d-none d-lg-block my-h2">
                 &nbsp;&nbsp;/&nbsp;&nbsp;
