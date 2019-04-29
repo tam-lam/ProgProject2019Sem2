@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchCarsWithDist } from "../store/actions/carActions";
 import CarItem from "./CarItem";
+import { isEmpty } from "../util/validationHelpers";
+import Spinner from "react-bootstrap/Spinner";
 
 class CarList extends Component {
   state = {
@@ -20,7 +22,29 @@ class CarList extends Component {
       this.props.fetchCarsWithDist();
     }
   }
-
+  displayLoading = () => {
+    if (isEmpty(this.props.cars)) {
+      console.log("CAR IS EMPTY");
+      return (
+        <div className="spinner-container text-center text-muted">
+          <Spinner
+            animation="border"
+            variant="success"
+            className="loading-spinner slow-spin shadow-lg"
+          />
+          <h2 className="font-weight-light">Loading...</h2>
+          <p>Usual loading time is 0-5 minutes</p>
+          <p className="text-left loading-list-container">
+            <li>Retriving vehicles</li>
+            <li>Calculating distance to vehicles</li>
+            <li>Small talk with server</li>
+            <li>Taking a nap</li>
+          </p>
+          <br />
+        </div>
+      );
+    }
+  };
   render() {
     const carItems = this.props.cars.map(item => (
       <CarItem
@@ -32,6 +56,7 @@ class CarList extends Component {
 
     return (
       <React.Fragment>
+        {this.displayLoading()}
         <ul className="list-group  my-list-group bg-dark list-group-flush ">
           {carItems}
         </ul>

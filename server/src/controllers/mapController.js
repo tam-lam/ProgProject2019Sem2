@@ -27,6 +27,7 @@ export async function getCarsWithDistance(req, res) {
 
   var carsFromDB = [];
   //   var h;
+
   var distancePromise = new Promise(async function(resolve, reject) {
     carsFromDB = await getCarsFromDB();
 
@@ -41,10 +42,8 @@ export async function getCarsWithDistance(req, res) {
       if (distances.status == "OK") {
         if (distances.rows[0].elements[0].status == "OK") {
           var distanceValue = distances.rows[0].elements[0].distance;
+          resolve(distances);
         }
-      }
-      if (distances.status == "OK") {
-        resolve(distances);
       }
     });
   })
