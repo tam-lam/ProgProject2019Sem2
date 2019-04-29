@@ -33,7 +33,11 @@ class CarList extends Component {
             className="loading-spinner slow-spin shadow-lg"
           />
           <h2 className="font-weight-light">Loading...</h2>
-          <p>Usual loading time is 0-5 minutes</p>
+          <p>
+            Usual loading time is 0-5 minutes
+            <br />
+            Try reloading if this takes too long
+          </p>
           <p className="text-left loading-list-container">
             <li>Retriving vehicles</li>
             <li>Calculating distance to vehicles</li>
