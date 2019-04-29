@@ -43,7 +43,9 @@ export async function getCarsWithDistance(req, res) {
           var distanceValue = distances.rows[0].elements[0].distance;
         }
       }
-      resolve(distances);
+      if (distances.status == "OK") {
+        resolve(distances);
+      }
     });
   })
     .then(function(distances) {
