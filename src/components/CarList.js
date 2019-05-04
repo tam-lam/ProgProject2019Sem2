@@ -13,18 +13,50 @@ class CarList extends Component {
   componentWillMount() {
     this.props.fetchCarsWithDist();
   }
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.doErrorExist !== this.props.doErrorExist &&
-      this.state.refreshCount <= 50
-    ) {
-      this.setState({ refreshCount: this.state.refreshCount + 1 });
+  componentDidUpdate() {
+    if (isEmpty(this.props.cars) && this.props.doErrorExist === false) {
+      console.log("Cars is empty,refetch");
       this.props.fetchCarsWithDist();
     }
   }
-  displayLoading = () => {
+  myTimer = () => {
     if (isEmpty(this.props.cars)) {
-      console.log("CAR IS EMPTY");
+      this.forceUpdate();
+    }
+  };
+  componentDidMount() {
+    var reloadIntervalId = setInterval(this.myTimer, 5000);
+    this.setState({ reloadIntervalId: reloadIntervalId });
+    if (!isEmpty(this.props.cars)) {
+      clearInterval(this.state.reloadIntervalId);
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.doErrorExist !== this.props.doErrorExist &&
+      this.state.refreshCount < 20
+    ) {
+      this.setState({ refreshCount: this.state.refreshCount + 1 });
+      console.log("REFRESHING COUNT:" + this.state.refreshCount);
+      this.props.fetchCarsWithDist();
+    } else {
+      this.setState({
+        refreshCount: this.state.refreshCount + 1
+      });
+    }
+  }
+
+  displayFetchingFeedBack = () => {
+    if (isEmpty(this.props.cars)) {
+      if (this.state.refreshCount >= 20) {
+        return (
+          <div className="spinner-container text-center text-muted">
+            <h1 className="display-1">!</h1>
+            <h2 className="font-weight-light ">Network error</h2>
+            <p>Please try again</p>
+          </div>
+        );
+      }
       return (
         <div className="spinner-container text-center text-muted">
           <Spinner
@@ -41,8 +73,6 @@ class CarList extends Component {
           <p className="text-left loading-list-container">
             <li>Retriving vehicles</li>
             <li>Calculating distance to vehicles</li>
-            <li>Small talk with server</li>
-            <li>Taking a nap</li>
           </p>
           <br />
         </div>
@@ -60,7 +90,7 @@ class CarList extends Component {
 
     return (
       <React.Fragment>
-        {this.displayLoading()}
+        {this.displayFetchingFeedBack()}
         <ul className="list-group  my-list-group bg-dark list-group-flush ">
           {carItems}
         </ul>
