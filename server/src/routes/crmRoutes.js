@@ -8,10 +8,12 @@ import {
   getRentals 
 } from "../controllers/rentalController"
 
-
+import { 
+  addNewUser,
+  loginUser
+} from "../controllers/userController"
 
 import { setUserLocation , getCarsWithDistance } from "../controllers/mapController";
-
 
 const routes = (app) => {
   app.route('/car')
@@ -29,6 +31,10 @@ const routes = (app) => {
   app.route('/rental')
     .post(addNewRental)
     .get(getRentals)
+    
+  app.route('/newUser')
+    .post(addNewUser)
+    
 
 }
 
