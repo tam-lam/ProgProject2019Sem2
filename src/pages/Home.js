@@ -5,6 +5,9 @@ import Jumbotron from "../components/Jumbotron";
 import MapContainer from "../components/MapContainer";
 import DetailModal from "../components/DetailModal";
 import CarList from "../components/CarList";
+import { isEmpty } from "../util/validationHelpers";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Home extends Component {
   constructor(props) {
@@ -13,7 +16,31 @@ class Home extends Component {
       modalShow: false
     };
   }
+  displayAlert = () => {
+    if (!isEmpty(this.props.checkoutCar)) {
+      return (
+        <div
+          className="alert alert-light text-dark checkout-alert shadow-lg"
+          role="alert"
+        >
+          <div className="row">
+            <div className="col-1 text-center" />
 
+            <div className="col-10 text-dark">
+              You selected a vehicle. Please complete or cancle booking in{" "}
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/checkout"
+              >
+                Checkout
+              </Link>{" "}
+              page
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
   render() {
     let modalClose = () => this.setState({ modalShow: false });
 
@@ -25,6 +52,8 @@ class Home extends Component {
     return (
       <React.Fragment>
         <NavBar />
+        {this.displayAlert()}
+
         <Jumbotron
           title="Rent now"
           ishomepage={true}
@@ -48,5 +77,11 @@ class Home extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  checkoutCar: state.cars.checkoutCar
+});
 
-export default Home;
+export default connect(
+  mapStateToProps,
+  {}
+)(Home);
