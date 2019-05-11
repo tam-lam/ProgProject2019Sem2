@@ -11,12 +11,19 @@ const MongoStore = require("connect-mongo")(session);
 const cors = require("cors");
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-const db = config.get("mongoURI");
+// const db = config.get("mongoURI");
+const db =
+  process.env.MONGODB_URL ||
+  "mongodb://forestspirit:Ellesmera1011@ds155086.mlab.com:55086/heroku_7vgv240g";
 
 app.use(cors());
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  a;
+}
 // mongoose connection
 try {
   mongoose.Promise = global.Promise;
