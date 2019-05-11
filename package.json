@@ -48,7 +48,7 @@
     "jest": "./node_modules/.bin/jest",
     "test-mocha": "mocha --recursive",
     "dev": "concurrently --kill-others \"npm run start\" \"npm run server\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix src && npm run build --prefix src"
   },
   "eslintConfig": {
     "extends": "react-app"
