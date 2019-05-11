@@ -40,7 +40,7 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon server/index.js --exec babel-node -e js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -50,6 +50,7 @@
     "dev": "concurrently --kill-others \"npm run start\" \"npm run server\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": "react-app"
   },

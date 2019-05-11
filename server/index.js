@@ -21,9 +21,9 @@ const db =
 app.use(cors());
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("src/build"));
+  app.use(express.static(path.join(__dirname, "../build")));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "src", "build", "index.html"));
+    es.sendFile(path.join(__dirname, "../build", "index.html"));
   });
 }
 // mongoose connection
@@ -56,5 +56,13 @@ app.use(
 app.use("/getUser", require("./src/routes/getUserDetails"));
 
 routes(app);
+// ... other app.use middleware
+app.use(express.static(path.join(__dirname, "../build")));
 
+// ...
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build", "index.html"));
+});
 app.listen(PORT, () => console.log(`your server is running on port ${PORT}`));
+// ... other imports
