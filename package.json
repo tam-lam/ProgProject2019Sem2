@@ -25,7 +25,7 @@
     "jsonwebtoken": "^8.5.1",
     "mocha-junit-reporter": "^1.21.0",
     "mongoose": "^5.4.19",
-    "nodemon": "^1.19.0",
+    "nodemon": "^1.18.10",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.8.4",
@@ -40,7 +40,7 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "npm run server",
+    "start": "npm run server && npm run open",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -48,8 +48,7 @@
     "jest": "./node_modules/.bin/jest",
     "test-mocha": "mocha --recursive",
     "dev": "concurrently --kill-others \"npm run server\" \"npm run open\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
-    "open": "concurrently \"http-server -a localhost -p 3001\" \"open http://localhost:3001/build\""
+    "heroku-postbuild": "npm install && npm run build"
   },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
