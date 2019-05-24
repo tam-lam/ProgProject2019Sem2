@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import "react-toastify/dist/ReactToastify.css";
 import { loadUser } from "./store/actions/authActions";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -18,6 +19,7 @@ class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
   }
+
   render() {
     return (
       <Provider store={store}>

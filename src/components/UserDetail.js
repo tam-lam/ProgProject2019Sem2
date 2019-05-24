@@ -1,11 +1,10 @@
 import React from "react";
 import { isEmpty } from "../util/validationHelpers";
 const UserDetail = props => {
-  console.log(isEmpty(props.content));
   return (
     <React.Fragment>
       <div style={detailStyle}>
-        <h4>{props.title}: </h4>
+        <h4>{props.title}: </h4>{" "}
         {!isEmpty(props.content) ? (
           <p>{props.content} </p>
         ) : (

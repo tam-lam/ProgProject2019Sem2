@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 import { fetchConfirmations } from "../store/actions/confirmationActions";
 import { addRental } from "../store/actions/rentalActions";
 import { Link } from "react-router-dom";
+import { notifyConfirm } from "../components/ToastContent";
 import { isEmpty } from "../util/validationHelpers";
-
-// import { url } from "inspector";
-
 class Confirmation extends Component {
   componentDidMount() {
     if (this.props.currentUser) {
@@ -25,16 +23,19 @@ class Confirmation extends Component {
             to={{
               pathname: "/"
             }}
-            className="btn btn-primary"
+            className="btn btn-light"
             onClick={() => {
               this.props.onAddRental({
                 user_id: item.user_id,
                 car_rego: item.rego
               });
+              notifyConfirm();
             }}
           >
             Confirm Booking for {item.rego}
           </Link>
+          <br />
+          <br />
         </div>
       ));
     }
@@ -48,27 +49,6 @@ class Confirmation extends Component {
           ) : (
             confirmItems
           )}
-          {/* <Link
-            to={{
-              pathname: "/"
-            }}
-            className="btn btn-primary"
-            onClick={() => {}}
-          >
-            Confirm Booking for ABC123
-          </Link>
-          <br />
-          <br />
-
-          <Link
-            to={{
-              pathname: "/user"
-            }}
-            className="btn btn-primary"
-            onClick={() => {}}
-          >
-            Confirm Booking for ABC123
-          </Link> */}
         </div>
       </React.Fragment>
     );
