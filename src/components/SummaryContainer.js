@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 class SummaryContainer extends Component {
   showDetail = (label, detail, width, isImportant) => {
     var className = "col-sm-" + width + " detail-col text-capitalize";
@@ -15,6 +14,7 @@ class SummaryContainer extends Component {
 
   render() {
     var carImgURL = "/images/" + this.props.car.rego + ".jpg";
+
     console.log(this.props.distance);
     return (
       <React.Fragment>
